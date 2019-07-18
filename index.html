@@ -1,192 +1,343 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-  box-sizing: border-box;
+
+.star-rating {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:2.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
 }
 
-body {
-	min-width:800px;
-  font-family: Arial, Helvetica, sans-serif;
+.star-rating input {
+  display:none;
 }
 
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
 }
 
-tab2 { padding-left: 8em; }
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 100%;
-  height: 150px; /* only for demonstration, should be removed */
-  background: #d0d9f5;
-  padding: 10px;
+.star-rating :checked ~ label {
+  color:#f90;
 }
 
-aside {
-	float: right;
-	width: 30%;
-	background: #BDA8A8
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
 }
 
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
+.dialogHead {
+background-image: -webkit-linear-gradient(103deg, #02ccba, #02b3e4);
+background-image: -o-linear-gradient(103deg, #02ccba, #02b3e4);
+background-image: linear-gradient(193deg, #02ccba, #02b3e4);
+padding: 30px 40px;
+border-bottom: 1px solid #dbe2e8;
+text-align: center;
+border-radius: 6px 6px 0 0;
 }
 
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
+.dialogHeadText{
+  color: #fff;
+  text-align:center;
+  vertical-align: middle;
+  font-weight: 100;
+  background: transparent;
 }
 
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
+.dialogBody{
+  padding: 30px 40px;
 }
 
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
+.dialogBodyText{
+  text-align: left;
+  font-weight: 100;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
+.dialogFeedback{
+
+    position: absolute;
+    background: #fff;
+    outline: none;
+    max-width: 650px;
     height: auto;
-  }
+    top: 10%;
+    bottom: auto;
+    left: 40px;
+    right: 40px;
+    padding: 0;
+    box-shadow: 0 0 15px 0 rgba(46,60,73,.2);
+    border: 0;
+    border-radius: 6px;
+    margin: 0 auto 40px;
+    overflow: visible;
 }
 
-p.main {
-  text-align: justify;
+.closeBtn{
+  color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
+.dialogReactions{
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  padding: 10px 0;
+  min-height: 5px;
+}
 
-.outerDiv{
-	background-color: #ffffff;
-	color: #fff;
-	height: 300px;
-	width: 100%;
-	margin: 0px auto;
-	padding: 0px;
-	}
+.dialogReactionImg{
 
-.leftDiv{
-	background-color: #ffffff;
-	color: #000;
-	height: 300px;
-	width: 80%;
-	float: left;
-	}
-.rightDiv{
-	background-color: #ffffff;
-	color: #000;
-	height: 300px;
-	width: 20%;
-	float: right;
-	}
+  opacity: 1;
 
-.outerDiv1{
-	background-color: #ffffff;
-	color: #000;
-	height: 100px;
-	width: 100%;
-	margin: 0px auto;
-	padding: 0px;
-	}
+  /* -webkit-transform: scale3d(.9,.9,.9);
+  transform: scale3d(.9,.9,.9); */
+  transition: all .35s ease-out;
+  cursor:pointer;
 
-.leftDiv1{
-	background-color: #ffffff;
-	color: #000;
-	height: 100px;
-	width: 75;
-	float: left;
-	}
-.rightDiv1{
-	background-color: #ffffff;
-	color: #000;
-	height: 100px;
-	width: 70%
-	float: right;
-	}	
+}
+.dialogReactionImg:hover{
+   transform: scale(1.2, 1.2); /* default is 1, scale it to 1.5 */
+   opacity: 1;
+
+}
+
+.dialogFeedbackText{
+  min-height: 100px;
+}
+
+.feedbackTextarea{
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid #dbe2e8;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(46,60,73,.05);
+  border-radius: 2px;
+  color: #2e3d49;
+  width: 100%;
+  height: 120px;
+}
+
+.feedbackTextarea:focus{
+
+  border-color: #02b3e4;
+}
+
+.submitBtn{
+  background: #02b3e4;
+  color: #fff;
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  height: 3rem;
+  padding: 0 2rem;
+  border: transparent;
+  border-radius: .25rem;
+  transition: all .3s ease;
+  cursor:pointer;
+}
+
 
 </style>
-
+</head>
 <body>
 
-<h2>Ticket# 109234791</h2>
-<p><font size="2">Schedule Date 2 Feb 2018 10:00 AM</font></p>
+<div class="dialogFeedback">
 
-<div class="outerDiv">
-	<div class="leftDiv">
-		<div id="engineerMap" style="width:100%;height:300px;"></div>			
-	</div>
-	<div class="rightDiv">
-		<img src="https://i.ibb.co/w6hdzJT/status.png" alt="status" style="height:300px">
-	</div>
+  <div class="dialogHead">
+
+    <h2 class="dialogHeadText">Your Ticket #872361 has resolved</h2>
+
+  </div>
+
+  <form action="https://formspree.io/feedback@profcal.ie" method="POST">
+
+
+	<div class="dialogBody">
+      <h3 class="dialogBodyText">1. Was the problem reported resolve completely? </h3>
+      <div class="dialogReactions">
+      	      <h3 class="dialogBodyText">Yes</h3>
+      				<input type="checkbox" id="myCheck" onclick="myFunction()">
+      			<h3 class="dialogBodyText">No</h3>
+      	<input type="checkbox" id="myCheck" onclick="myFunction()">
+      </div>
+    </div>
+
+    <div class="dialogBody">
+      <h3 class="dialogBodyText">2. The response of the engineer was good?</h3>
+      <div class="dialogReactions">
+      	      <h3 class="dialogBodyText">Yes</h3>
+      				<input type="checkbox" id="myCheck" onclick="myFunction()">
+      			<h3 class="dialogBodyText">No</h3>
+      	<input type="checkbox" id="myCheck" onclick="myFunction()">
+      </div>
+    </div>
+
+
+    <div class="dialogBody">
+      <h3 class="dialogBodyText">3. Is this ticket resolved in the first attempt?</h3>
+      <div class="dialogReactions">
+      	      <h3 class="dialogBodyText">Yes</h3>
+      				<input type="checkbox" id="myCheck" onclick="myFunction()">
+      			<h3 class="dialogBodyText">No</h3>
+      	<input type="checkbox" id="myCheck" onclick="myFunction()">
+      </div>
+    </div>
+
+      <div class="dialogBody">
+      <h3 class="dialogBodyText">4. Was this call resolved through remote support?</h3>
+      <div class="dialogReactions">
+      	      <h3 class="dialogBodyText">Yes</h3>
+      				<input type="checkbox" id="myCheck" onclick="myFunction()">
+      			<h3 class="dialogBodyText">No</h3>
+      	<input type="checkbox" id="myCheck" onclick="myFunction()">
+      </div>
+    </div>
+
+
+    <div class="dialogBody">
+      <h3 class="dialogBodyText">5. Overall Rating.</h3>
+      <div class="dialogReactions">
+        <div class="star-rating">
+  			<input type="radio" id="5-stars" name="rating" value="5" />
+  			<label for="5-stars" class="star">&#9733;</label>
+  			<input type="radio" id="4-stars" name="rating" value="4" />
+  			<label for="4-stars" class="star">&#9733;</label>
+  			<input type="radio" id="3-stars" name="rating" value="3" />
+  			<label for="3-stars" class="star">&#9733;</label>
+  			<input type="radio" id="2-stars" name="rating" value="2" />
+ 		 	<label for="2-stars" class="star">&#9733;</label>
+  			<input type="radio" id="1-star" name="rating" value="1" />
+  			<label for="1-star" class="star">&#9733;</label>
 </div>
+      </div>
+    </div>
 
+    <div class="dialogBody">
+      <div class="dialogFeedbackText">
+        <!-- Storing reaction of the feedback -->
+        <input id="reactionInput" type="hidden" name="reaction" value="none">
+        <textarea name="feedback" class="feedbackTextarea" rows="3" maxlength="512" placeholder="(Optional) Suggest Improvements.."></textarea>
+      </div>
+      <input type="submit" class="submitBtn" value="Send and Continue"></input>
 
-<script>	
-function myMap() {
-var mapProp= {
-  center:new google.maps.LatLng(37.400923, -122.053953),
-  zoom:20,
-};
+    </div>
 
-var map = new google.maps.Map(document.getElementById("engineerMap"),mapProp);
-var image = 'https://i.ibb.co/CsjqqmC/dalibor-matura-1.jpg';
-var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(37.400923, -122.053953),
-			map: map,
-			title: 'Anand'
-		});
-}
-</script>
+  </form>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyRm7pZ9g7YZrs614NNwIf2alRNaPiaHU&callback=myMap"></script>
-
-
-<div class="outerDiv1">
-	<div class="leftDiv1">
-		<img src="https://i.ibb.co/CsjqqmC/dalibor-matura-1.jpg" alt="user avatar" style="width:75px" border="1">	
-	</div>
-
-	<div class="rightDiv1" style="line-height: 10px">
-		<p align="left"><tab>Mr Curtis James</p>
-		<p align="left"><font size="2"><tab>Microsoft Specialist<p>	
-		<img src="http://valentinepackaging.co/wp-content/uploads/2018/05/1017030557115starratings.jpg" alt="rating" style="height: 20px">
-	</div>
-</div>
-
-
-<div style="line-height:10px">
-	<nav>
-		<p> Asset #		: LFO122001</p>	
-		<p> Asset type: Laptop.</p>	
-		<p> Ticket		: Display not working</p>
-		<p> Urgency		: Medium</p>
-		<p> Impact		: Medium</p>	
-	</nav>	
 </div>
 
 </body>
+
+
+<script type="text/javascript">
+
+var reactionBtns = document.querySelectorAll(".dialogReactionImg");
+
+if(checkCookie()) //If user has already provided feedback
+{
+  document.getElementsByTagName("BODY")[0].style.display = "none";
+  window.location = "https://www.foodbyte.org/supplier-check.html/"; // Redirecting it back to products add page
+  console.log("USER SUBMITTED FEEDBACK");
+
+}
+
+
+// Onclick of a reaction image
+function setReaction(element, reaction)
+{
+
+  var index = 0, length = reactionBtns.length;
+    for ( ; index < length; index++)
+    {
+        reactionBtns[index].style.border = "none";
+    }
+
+  document.getElementById("reactionInput").value = reaction;
+  console.log("Reaction text:", reaction);
+
+  element.style.border = "2px solid #02b3e4";
+
+}
+
+function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+
+
+// // Setting cookie if not exists
+// function setCookie(cname, cvalue, exdays)
+// {
+//     var d = new Date();
+//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); //Expiry date
+//     var expires = "expires="+d.toUTCString();
+//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+// }
+
+// // Getting the cookie if the user has already submitted feedback
+// function getCookie(cname)
+// {
+//     var name = cname + "=";
+//     var cookieArray = document.cookie.split(';');
+//     for(var i = 0; i < cookieArray.length; i++)
+//     {
+//         var c = cookieArray[i];
+//         while (c.charAt(0) == ' ')
+//         {
+//             c = c.substring(1);
+//         }
+//         if (c.indexOf(name) == 0)
+//         {
+//             console.log("COOKIE VALUE:", c.substring(name.length, c.length));
+//             return c.substring(name.length, c.length);
+//         }
+//     }
+
+//     //Returning false if cookie doesnt exist
+//     return "false";
+// }
+
+
+// function checkCookie()
+// {
+//     var feedback = getCookie("productFeedback");
+//     if (feedback != "false")
+//     {
+//         console.log("Feedback Cookie exists");
+//         return true; //User already has provided feedback
+//     }
+//     else
+//     {
+//       setCookie("productFeedback", "true", 30); // setting cookie value to true, expires in 30 days
+//       return false; //User has not provided feedback
+//     }
+// }
+</script>
+
 </html>

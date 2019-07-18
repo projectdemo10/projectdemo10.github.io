@@ -248,34 +248,6 @@ border-radius: 6px 6px 0 0;
 
 <script type="text/javascript">
 
-var reactionBtns = document.querySelectorAll(".dialogReactionImg");
-
-if(checkCookie()) //If user has already provided feedback
-{
-  document.getElementsByTagName("BODY")[0].style.display = "none";
-  window.location = "https://www.foodbyte.org/supplier-check.html/"; // Redirecting it back to products add page
-  console.log("USER SUBMITTED FEEDBACK");
-
-}
-
-
-// Onclick of a reaction image
-function setReaction(element, reaction)
-{
-
-  var index = 0, length = reactionBtns.length;
-    for ( ; index < length; index++)
-    {
-        reactionBtns[index].style.border = "none";
-    }
-
-  document.getElementById("reactionInput").value = reaction;
-  console.log("Reaction text:", reaction);
-
-  element.style.border = "2px solid #02b3e4";
-
-}
-
 function myFunction() {
   // Get the checkbox
   var checkBox = document.getElementById("myCheck");
@@ -289,6 +261,33 @@ function myFunction() {
     text.style.display = "none";
   }
 }
+//var reactionBtns = document.querySelectorAll(".dialogReactionImg");
+
+// if(checkCookie()) //If user has already provided feedback
+// {
+//   document.getElementsByTagName("BODY")[0].style.display = "none";
+//   console.log("USER SUBMITTED FEEDBACK");
+// }
+
+
+// // Onclick of a reaction image
+// function setReaction(element, reaction)
+// {
+
+//   var index = 0, length = reactionBtns.length;
+//     for ( ; index < length; index++)
+//     {
+//         reactionBtns[index].style.border = "none";
+//     }
+
+//   document.getElementById("reactionInput").value = reaction;
+//   console.log("Reaction text:", reaction);
+
+//   element.style.border = "2px solid #02b3e4";
+
+// }
+
+
 
 
 // // Setting cookie if not exists

@@ -13,7 +13,7 @@
 
 <script>
   console.log("Step two");
-  let searchParams = new URLSearchParams(url.search);
+  let searchParams = new URLSearchParams(window.location.search.substring(1));
   console.log(searchParams.get('userName')); 
   console.log(searchParams.get('uEmail')); 
   console.log(searchParams.get('encodeUString')); 

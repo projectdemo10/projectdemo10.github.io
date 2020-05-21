@@ -34,9 +34,12 @@
 
 <script>
 setTimeout(function(){
-   console.log("Step three");
-document.querySelector("img[src*= 'LogMeIN_1.png']").click();
+document.addEventListener("DOMContentLoaded", function() { 
+  console.log("Step three");
+  document.querySelector("img[src*= 'LogMeIN_1.png']").click();
+}
 },150);
+
 </script>
 
 </body>

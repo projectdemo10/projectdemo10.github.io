@@ -15,13 +15,14 @@
   console.log("Step two");
   let searchParams = new URLSearchParams(window.location.search.substring(1));
   console.log(searchParams.get('userName')); 
+  console.log(searchParams.get('fname')); 
   console.log(searchParams.get('uEmail')); 
   console.log(searchParams.get('encodeUString')); 
 
 
   window._bcvma = window._bcvma || [];
-  _bcvma.push(["setParameter", "VisitName", 'Mayank']);
-  _bcvma.push(["setParameter", "VisitEmail", 'mayank.kesari@logmein.com']);
+  _bcvma.push(["setParameter", "VisitName", searchParams.get('fname')]);
+  _bcvma.push(["setParameter", "VisitEmail", searchParams.get('uEmail')]);
   _bcvma.push(["setAccountID", "170687742626837463"]);
   _bcvma.push(["setParameter", "WebsiteID", "171233014255981461"]);
   _bcvma.push(["addFloat", {type: "chat", id: "171233014014565440"}]);
@@ -40,11 +41,8 @@
 
 <script>
 setTimeout(function(){
-  console.log("Step three - TimeOut");
-document.addEventListener("DOMContentLoaded", function() { 
   console.log("Step three");
   document.querySelector("img[src*= 'LogMeIN_1.png']").click();
-});
 },150);
 </script>
 

@@ -13,6 +13,12 @@
 
 <script>
   console.log("Step two");
+  let searchParams = new URLSearchParams(url.search);
+  console.log(searchParams.get('userName')); 
+  console.log(searchParams.get('uEmail')); 
+  console.log(searchParams.get('encodeUString')); 
+
+  
   window._bcvma = window._bcvma || [];
   _bcvma.push(["setParameter", "VisitName", 'Mayank']);
   _bcvma.push(["setParameter", "VisitEmail", 'mayank.kesari@logmein.com']);
@@ -34,6 +40,7 @@
 
 <script>
 setTimeout(function(){
+  console.log("Step three - TimeOut");
 document.addEventListener("DOMContentLoaded", function() { 
   console.log("Step three");
   document.querySelector("img[src*= 'LogMeIN_1.png']").click();

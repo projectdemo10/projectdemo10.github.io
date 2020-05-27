@@ -2,15 +2,6 @@
 <html>
 <body>
 
- <script>
-   document.onreadystatechange = function(e){
-    if (document.readyState === 'complete'){
-      console.log("Ready state");
-      console.log("Step one");
-    }
-   }
- </script>
-
 <script>
   console.log("Step two");
   let searchParams = new URLSearchParams(window.location.search.substring(1));
@@ -19,6 +10,8 @@
   console.log(searchParams.get('uEmail')); 
   console.log(searchParams.get('encodeUString')); 
 
+  window.user = searchParams.get('encodeUString');
+  window.encrString = searchParams.get('encodeUString');
 
   window._bcvma = window._bcvma || [];
   _bcvma.push(["setParameter", "VisitName", searchParams.get('fname')]);
@@ -43,7 +36,7 @@
 setTimeout(function(){
   console.log("Step three");
   document.querySelector("img[src*= '/LogMeIN_1.png']").click();
-},2500);
+},4500);
 </script>
 
 </body>
